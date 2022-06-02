@@ -1,17 +1,15 @@
 /*-------------------------------- Constants --------------------------------*/
-
+const winningCombos = []
 
 
 /*---------------------------- Variables (state) ----------------------------*/
 let board, turn, winner
 
-board = [null, null, null, null, null, null, null, null, null]
-turn = 1
-winner = null
+
 
 /*------------------------ Cached Element References ------------------------*/
 
-const squareEls = document.querySelectorAll("div.square")
+const squareEls = document.querySelectorAll(".square")
 
 const messageEl = document.querySelector("#message")
 
@@ -20,13 +18,16 @@ const messageEl = document.querySelector("#message")
 
 
 /*-------------------------------- Functions --------------------------------*/
-
-function init() {
-    //console.log("sanity check")
-    
-}
-render()
 init()
+function init() {
+    board = [null, null, null, null, null, null, null, null, null]
+    turn = 1
+    winner = null
+    //console.log("sanity check")
+    render()
+}
+
+
 
 
 // function render() {
@@ -37,23 +38,24 @@ init()
 // }
 
 function render() {
-    let Idx 
+    
     board.forEach(function(square, Idx) {
-        if(turn === 1) {
+        if(square === 1) {
             squareEls[Idx].textContent = "X"
             //console.log(squareEls[Idx].textContent)
-        } else {
+        } 
+        if (square === -1) {
             squareEls[Idx].textContent = "O"
-            console.log(squareEls[Idx].textContent)
+            //console.log(squareEls[Idx].textContent)
         } 
         
     })
-        if (winner = null) {
-            messageEl.textContent = `It is player ${turn}'s turn!`
+        if (winner === null) {
+            messageEl.textContent = `Player ${turn === 1 ? "X": "O"}'s turn!`
         } else if (winner === 'T')  {
             messageEl.textContent = `It 's a tie!`
         } else {
-            messageEl.textContent = `Player ${winner} won!`
+            messageEl.textContent = `Player ${turn === 1 ? "O": "X"} won!`
         }
 
 }
