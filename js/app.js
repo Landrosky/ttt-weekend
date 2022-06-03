@@ -22,12 +22,16 @@ const squareEls = document.querySelectorAll(".square")
 
 const messageEl = document.querySelector("#message")
 
+
+
 /*----------------------------- Event Listeners -----------------------------*/
-
-
+ squareEls.forEach(function(square) {
+     square.addEventListener('click', handleClick) 
+ })
 
 /*-------------------------------- Functions --------------------------------*/
 init()
+
 function init() {
     board = [null, null, null, null, null, null, null, null, null]
     turn = 1
@@ -35,7 +39,6 @@ function init() {
     //console.log("sanity check")
     render()
 }
-
 
 
 function render() {
@@ -59,4 +62,13 @@ function render() {
             messageEl.textContent = `Congratulations!!! Player ${turn === 1 ? "O": "X"} won!`
         }
 
+}
+
+function handleClick(evt) {
+    console.log(evt)
+    console.log(evt.target)
+    console.log(evt.target.id)
+    const sqIdx = evt.target.id
+    board[sqIdx] = turn
+    turn = turn * -1
 }
