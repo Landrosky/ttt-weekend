@@ -65,10 +65,40 @@ function render() {
 }
 
 function handleClick(evt) {
-    console.log(evt)
-    console.log(evt.target)
-    console.log(evt.target.id)
-    const sqIdx = evt.target.id
+    // console.log(evt)
+    // console.log(evt.target)
+    // console.log(evt.target.id)
+    const sqIdx = parseInt(evt.target.id.substring(2))
+    //console.log(sqIdx)
+    if (board[sqIdx] !== null || winner !== null){
+        return
+    }
     board[sqIdx] = turn
+    //console.log(turn)
     turn = turn * -1
+    getWinner()
+    //the below function will show X and O on the board every time the player clicks
+    render()
 }
+
+function getWinner() {
+    winningCombos.forEach(function(winningCombos) {
+        let sum = board[winningCombos[0]] + board[winningCombos[1]] + board[winningComb[2]]
+        if(Math.abs(sum) === 3) {
+            winner = turn
+        } else if (board.every!== null)
+}
+
+
+//for(let i = 0; i < winningCombos.length; i++) {
+    // let sum = Math.abs(board[winningCombos[i][0]] + board[winningCombos[i][1]] + board[winningCombos[i][2]] === 3)
+    //     } if (sum === 3) {
+    //         winner = 1
+    //     }   else if (sum === -3) {
+    //         winner = -1
+    //     }   else if (sum !== 3) {
+    //         winner = "T"
+    //     }   else {
+    //         return null
+    //     }
+//}
