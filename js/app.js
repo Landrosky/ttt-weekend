@@ -26,20 +26,35 @@ const resetBtnEl = document.querySelector("#reset-button")
 
 
 
+const INIT_MESSAGE = "Player it's your turn! Make a move!"
+
+
 /*----------------------------- Event Listeners -----------------------------*/
  squareEls.forEach(function(square) {
      square.addEventListener('click', handleClick) 
- })
+     
+})
+
+    
+
+
+
 resetBtnEl.addEventListener("click", function() {
     init()
+    messageEl.textContent = INIT_MESSAGE
 }) 
+
 /*-------------------------------- Functions --------------------------------*/
 init()
+
+
+messageEl.textContent = INIT_MESSAGE
 
 function init() {
     board = [null, null, null, null, null, null, null, null, null]
     turn = 1
     winner = null
+    
     //console.log("sanity check")
     render()
 }
@@ -50,11 +65,12 @@ function render() {
     board.forEach(function(square, Idx) {
         if(square === 1) {
             squareEls[Idx].textContent = "X"
-            //console.log(squareEls[Idx].textContent)
+            squareEls[Idx].style.color = "red"
         } 
         if (square === -1) {
             squareEls[Idx].textContent = "O"
             //console.log(squareEls[Idx].textContent)
+            squareEls[Idx].style.color = "blue"
         } 
         if(!square) {
             squareEls[Idx].textContent = ""
@@ -62,7 +78,8 @@ function render() {
         
     })
         if (winner === null) {
-            messageEl.textContent = `Player ${turn === 1 ? "X": "O"}'s turn!`
+            messageEl.textContent =  `It's player ${turn === 1 ? "X": "O"}'s turn!`
+            
         } else if (winner === 'T')  {
             messageEl.textContent = `It 's a tie!`
         } else {
@@ -99,3 +116,4 @@ function getWinner() {
         }
     })
 }
+
